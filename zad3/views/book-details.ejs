@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/styles.css">
+    <title><%= title %></title>
+</head>
+<body>
+    <h1><%= book.title %> by <%= book.author %></h1>
+    <p>Year: <%= book.year %></p>
+    <p>Status: <%= book.available ? 'Available' : 'Borrowed' %></p>
+    <form action="<%= book.available ? '/books/borrow/' + book.id : '/books/return/' + book.id %>" method="POST">
+        <button type="submit" <%= book.available ? '' : 'disabled' %>>Borrow Book</button>
+        <button type="submit" <%= book.available && didUserBorrowTheBook ? '' : 'disabled' %>>Return Book</button>
+    </form>
+    <% include partials/back.ejs %>
+</body>
+</html>
